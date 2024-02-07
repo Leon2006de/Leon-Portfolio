@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird</title>
+    <style>
+        body {
+            background-color: blue;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="Strasse">
+
+      
+        <canvas id="gameCanvas" width="1000%" height="1000px"> <h1>sotfpoihpj</h1></canvas> 
+    </div>
+  
+    <script>
+        let speed = 15;
+        let Bird = 0;
+        let KEY_UP = false;
+        let KEY_DOWN = false;
+        let pipes = [];
+        let pipeInterval = 500;
+        let lastPipeSpawnTime = 1;
+
+        let gameCanvas = document.getElementById("gameCanvas");
+        let ctx = gameCanvas.getContext("2d");
+
+        let birdImage = new Image();
+        birdImage.src = 'img/bird pic.png';
+
+        function fahren1() {
+            if (KEY_UP  ) {
+                Bird -= speed;
+            }
+            if (KEY_DOWN ) {
+                Bird += speed;
+            }
+        }
+
+        document.addEventListener("keydown", function (taste) {
+            if (taste.keyCode == 38) {
+                KEY_UP = true;
+            }
+            if (taste.keyCode == 40) {
+                KEY_DOWN = true;
+            }
+        });
+
+        document.addEventListener("keyup", function (taste) {
+            if (taste.keyCode == 38) {
+                KEY_UP = false;
+            }
+            if (taste.keyCode == 40) {
+                KEY_DOWN = false;
+            }
+        });
+
+        function createpipes() {
+            let currentTime = new Date().getTime();
+
+            if (currentTime - lastPipeSpawnTime > pipeInterval) {
+                let pipe = {
+                    x: gameCanvas.width,
+                    y: Math.random() * (gameCanvas.height - 40),
+                    width: 100,
+                    height: 100,
+                    src: 'img/R-removebg-preview.png',
+                    img: new Image()
+                };
+                pipe.img.src = pipe.src;
+                pipes.push(pipe);
+
+                lastPipeSpawnTime = currentTime;
+            }
+        }
+
+        function drawPipes() {
+            ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            pipes.forEach(pipe => {
+                pipe.x -= 3;
+                if (pipe.x + pipe.width > 0) {
+                    ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+                }
+            });
+        }
+
+        function drawBird() {
+            ctx.drawImage(birdImage, 5, Bird, 100, 150);
+        }
+
+        let bird = {
+        x: 5,
+        y: 0,
+        width: 150,
+        height: 200,
+        img: new Image()
+    };
+
+    bird.img.src = 'img/pipe.png';
+
+        function checkForCollision() {
+        pipes.forEach(function (pipe) {
+           
+            if (
+                bird.x + bird.width > pipe.x &&
+                bird.y + bird.height > pipe.y &&
+                bird.x < pipe.x + pipe.width &&
+                bird.y < pipe.y + pipe.height
+            ) {
+                bird.img.src = 'img/pipe.png';
+                console.log('Collision!!!');
+                pipes = pipes.filter(u => u != pipe);
+            }
+        });
+    }
+
+
+    function counter(){
+     
+        let pipe = document.getElementById(drawPipes());
+if (pipe > 0){
+    document.getElementById("zähler").value = +1;
+} 
+
+    }
+             
+console.log(counter());
+
+
+
+        function gameLoop() {
+            counter();       
+             fahren1();
+            drawPipes();
+            drawBird();
+            requestAnimationFrame(gameLoop);
+            createpipes();
+            checkForCollision();
+           
+        }
+
+        gameLoop();
+    </script>
+
+   <p style="font-size: 90px;   margin-left: 90%;" id="zähler">0</p>
+</body>
+</html>
+

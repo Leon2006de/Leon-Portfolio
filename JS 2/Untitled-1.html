@@ -1,0 +1,148 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passwort Seite</title> <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-box {
+        display: flex;
+        width: 30%;
+        height: 30%;
+        background-color: wheat;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .Box {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: #2b0080;
+        color: white;
+    }
+
+    .sidebox {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #2b0080;
+        color: white;
+    }
+
+    button {
+        width: 10%;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 15px;
+
+    }
+    
+    button a{
+        width: 40%;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 15px;
+        text-decoration: none;
+    }
+
+
+    .sidebox button {
+      margin: 0;margin-top: 15px;
+    }
+
+    #money {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    p {
+        margin-top: 10%;
+    }
+    input {
+margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+    <script>
+
+ 
+function Login (){
+
+  let kontrolle1 = document.getElementById("Display1").value
+  let kontrolle2 = document.getElementById("Display2").value
+  let Passwort1 = ("querz");
+  let Passwort2 = 1 
+  let B1 = ("Peter");
+  let B2 = ("Bob");
+
+
+  
+           
+    if (kontrolle1 == B1 && kontrolle2 == Passwort1 || kontrolle1 == B2 && kontrolle2 == Passwort2)
+        {     window.open("Game Auswahl.html");
+        document.getElementById ("P").innerHTML = "";
+    }
+        else  {
+
+    document.getElementById ("P").innerHTML = "Falsch";
+    }
+
+}
+
+
+
+
+    </script>
+    
+
+    <div class="flex-box">
+
+<div class="Box">
+   
+    <input placeholder="Name" type="text" id="Display1">
+    
+    <input placeholder="Passwort" type="password" id="Display2">
+
+
+    <button onclick="Login()">OK</button> 
+    
+    <p id="P"> </p>
+    
+      
+    
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,186 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leons Casino</title>
+    <style>
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Arial', sans-serif;
+          background-color: #f0f0f0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .flex-box {
+          display: flex;
+          width: 80%;
+          height: 80%;
+          background-color: wheat;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .Box {
+          flex: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          background-color: #2b0080;
+          color: white;
+      }
+
+      .sidebox {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #2b0080;
+          color: white;
+      }
+
+      button {
+          width: 40%;
+          padding: 10px;
+          font-size: 16px;
+          cursor: pointer;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          margin-top: 15px;
+      }
+      
+      button a{
+          width: 40%;
+          padding: 10px;
+          font-size: 16px;
+          cursor: pointer;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          margin-top: 15px;
+          text-decoration: none;
+      }
+
+
+
+      .sidebox button {
+        margin: 0;margin-top: 15px;
+      }
+
+      #money {
+          font-size: 24px;
+          margin: 0;
+      }
+
+      p {
+          margin: 0;
+      }
+      
+  </style>
+</head>
+<body>
+
+  <script>
+function WürfelSpiel() {
+        let Würfel1 = Math.floor(Math.random() * 6 + 1);
+        let Würfel2 = Math.floor(Math.random() * 6 + 1);
+        let Würfel3 = Math.floor(Math.random() * 6 + 1);
+
+        document.getElementById("Zahlen1").innerHTML = "Deine Zahlen sind <br> <br>" + Würfel1   + "    " + Würfel2 + "     " + Würfel3;
+
+        if (Würfel1 == Würfel2 && Würfel2 == Würfel3) {
+            document.getElementById("Ergebnis").innerHTML = "Tripple";
+            Geld();
+        }
+        else if (Würfel1 == Würfel2 || Würfel3 == Würfel1 || Würfel3 == Würfel2) {
+            document.getElementById("Ergebnis").innerHTML = "gewonnen :)";
+            Geld();
+        }
+        else {
+            document.getElementById("Ergebnis").innerHTML = "verloren :(";
+            Geld();
+        }
+    }
+
+    function Geld() {
+        let coins = parseInt(document.getElementById("money").innerHTML);
+        
+
+        if (document.getElementById("Ergebnis").innerHTML == "Tripple") {
+          document.getElementById("money").innerHTML = coins + 3;
+        }
+        else if (document.getElementById("Ergebnis").innerHTML == "gewonnen :)") {
+            document.getElementById("money").innerHTML = coins + 1;
+        } else {
+            document.getElementById("money").innerHTML = coins - 1;
+        }
+    }
+  
+
+
+    function einsatz () {
+      let coins = parseInt(document.getElementById("money").innerHTML);
+
+      if (document.getElementById("Ergebnis").innerHTML == "Tripple")
+       {
+          document.getElementById("money").innerHTML = coins + 5;
+        }
+        else if (document.getElementById("Ergebnis").innerHTML == "gewonnen :)") {
+            document.getElementById("money").innerHTML = coins + 2;
+        } else {
+            document.getElementById("money").innerHTML = coins - 2;
+        }
+    }
+
+    
+    function toggleFunktion() {
+            let button = document.getElementById("Peter");
+            if (button == Geld) {
+                button.onclick = einsatz;
+                Geld = einsatz;
+            } else {
+
+                button.onclick = Geld;
+                einsatz = Geld;
+            }
+        }
+
+
+
+
+    </script>
+    
+
+
+    <div class="flex-box">
+      <div class="Box">
+   <img src="" alt=""><h1>Slots</h1><br>
+          <button id="Spin" onclick="WürfelSpiel()">Spin</button><br><br>
+          <p id="Zahlen1"></p><br><br>
+          <p id="Ergebnis"></p>
+      </div>
+  
+      <div class="sidebox">
+        <button><a href="Untitled-1.html">Logout</a> <br><button><a href="Game Auswahl.html">Auswahl</a></button><br><br><br><br>
+ <br><br><br><br>
+
+
+          <button id="Pop" onclick="wechselFunktion()">Einsatz</button>
+
+
+          <p>Dein Geld: <span id="money">10</span></p>
+       
+        
+        
+      </div>
+  </div>
+
+
+</body>
+</html>

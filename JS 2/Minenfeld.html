@@ -1,0 +1,230 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minenfeld game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+  
+        .flex-box {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            background-color: wheat;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+  
+        .Box {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+  
+            background-color: #2b0080;
+            color: white;
+        }
+  
+        .sidebox {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2b0080;
+            color: white;
+        }
+  
+        button {
+            width: 40%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        button a{
+            width: 40%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+  
+        .sidebox button {
+          margin: 0;margin-top: 15px;
+        }
+  
+        #money {
+            font-size: 24px;
+            margin: 0;
+        }
+  
+        p {
+            margin: 0;
+        }
+        #minenfeld {
+  display: grid;
+  grid-template-columns: repeat(5,50%);
+  margin: 10%;
+  margin-left: 0;
+  margin-right: 24%;
+  }
+
+.cell {
+  width: 30px;
+  height: 30px;
+  margin: 10%;
+  background-color: #ccc;
+  border: 1px solid #fff;
+  text-align: left;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.mine {
+  background-color: red;
+  color: #fff;
+}
+
+.found {
+  background-color: green;
+  color: rgb(0, 0, 0);
+}
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const minenfeld = document.getElementById('minenfeld');
+
+  // Erstelle ein einfaches 10x10 Minenfeld
+  for (let x = 0; x < 5; x++) {
+    for (let y = 0; y < 5; y++) {
+      let cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.dataset.row = x;
+      cell.dataset.col = y;
+      minenfeld.appendChild(cell);
+
+      // Füge einen Event Listener für Klicks hinzu
+      cell.addEventListener('click', handleClick);
+    }
+  }
+
+  // Fülle zufällig einige Zellen mit Minen
+  placeMines();
+
+  function handleClick(event) {
+    let cell = event.target;
+    let found = true;
+    let isMine = cell.classList.contains('mine');
+    let coins = parseInt(document.getElementById("money").innerHTML);
+
+    if (  handleClick =! isMine ) {
+      
+      document.getElementById("money").innerHTML = coins + 0.5  ;
+      reset();
+  
+    } else {
+      document.getElementById("money").innerHTML = coins -2  ;
+     alert("verloren")
+      reset();
+    }
+    
+  }
+
+
+ 
+
+  function placeMines() {
+    let cells = document.querySelectorAll('.cell');
+    let totalMines = Math.floor(cells.length * 0.2); // 20% der Zellen sind Minen
+
+    for (let i = 0; i < totalMines; i++) {
+      let randomIndex = Math.floor(Math.random() * cells.length);
+      cells[randomIndex].classList.add('mine');
+    }
+  }
+
+  } 
+)
+function reset (){
+    let cells = document.querySelectorAll('.cell');
+    let totalMines = Math.floor(cells.length * 0.2);
+    let reset =  Math.floor(cells.length * 0);
+    switch (cells) {
+     case 0 : classList.add('mine') * 0; 
+     case 1 : placeMines ;
+
+  }
+}
+
+
+function loop () {
+ 
+
+}
+
+loop ();
+
+
+    </script>
+
+    
+    <script>
+
+    </script>
+
+
+    <div class="flex-box">
+        <div class="Box">
+     <img src="" alt="">
+        <h1>Mienenfeld</h1>
+     <div id="minenfeld"></div>
+        </div>
+    
+        <div class="sidebox">
+          <button><a href="Untitled-1.html">Logout</a> <br><button><a href="Game Auswahl.html">Auswahl</a></button><br><br><br><br>
+   <br><br><br><br>
+  
+            <input  type="text"  name="" id="Pop">
+  
+  
+            <button id="Pop" onclick="change()">Einsatz</button>
+  
+  
+            <p>Dein Geld <span id="money">10</span></p>
+         
+            <button id="Spin" onclick="cashout()">cashout</button>
+            <button id="Spin" onclick="resetgame()">reset</button>
+          
+        </div> 
+    </div>
+  
+
+</body>
+</html>
